@@ -6,19 +6,25 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:form id="frmRecetas">
-        <p:dataTable id="tblRecetas" var="unaReceta" value="#{recetaController.listaRecetas}" selection="#{recetaController.recetaSeleccionada}" rowKey="#{unaReceta.id}">
+        <p:dataTable id="tblRecetas" var="unaRecetaBusc" value="#{recetaController.listaRecetasBusqueda}" selection="#{recetaController.recetaSeleccionadaBusqueda}" rowKey="#{unaRecetaBusc.id}">
             <f:facet name="header">
                 Lista de Recetas
             </f:facet>
             <p:column selectionMode="single" style="width:16px;text-align:center"/>
             <p:column headerText="Id">
-                <h:outputText value="#{unaReceta.id}" />
+                <h:outputText value="#{unaRecetaBusc.id}" />
             </p:column>
             <p:column headerText="Nombre">
-                <h:outputText value="#{unaReceta.titulo}" />
+                <h:outputText value="#{unaRecetaBusc.titulo}" />
             </p:column>
             <p:column headerText="Precio">
-                <h:outputText value="#{unaReceta.precio}" />
+                <h:outputText value="#{unaRecetaBusc.precio}" />
+            </p:column>
+            <p:column headerText="Fecha">
+                <h:outputText value="#{unaRecetaBusc.fechaCreacion}" />
+            </p:column>
+            <p:column headerText="Autor">
+                <h:outputText value="#{unaRecetaBusc.autor.nombre}" />
             </p:column>
             
         </p:dataTable>

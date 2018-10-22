@@ -36,8 +36,10 @@ public class RecetaController implements Serializable {
     IngredienteService ingredienteSrv;
 
     private Receta recetaSeleccionada;
+    private Receta recetaSeleccionadaBusqueda;
     private Autor autorSeleccionado;
     private List<Receta> listaRecetas;
+    private List<Receta> listaRecetasBusqueda;
 
     private DualListModel<Ingrediente> ingredientesDisponibles;
     
@@ -79,7 +81,7 @@ public class RecetaController implements Serializable {
     }*/
     
     public void buscar() {        
-        this.listaRecetas=this.recetaSrv.busquedaAvanzada(busquedaAutor, busquedaPrecioMin, busquedaPrecioMax);
+        this.listaRecetasBusqueda=this.recetaSrv.busquedaAvanzada(busquedaAutor, busquedaPrecioMin, busquedaPrecioMax);
          
 
     }
@@ -89,10 +91,20 @@ public class RecetaController implements Serializable {
         return recetaSeleccionada;
     }
 
+    public Receta getRecetaSeleccionadaBusqueda() {
+        return recetaSeleccionadaBusqueda;
+    }
+    
     public void setRecetaSeleccionada(Receta recetaSeleccionada) {
         this.recetaSeleccionada = recetaSeleccionada;
         this.recetaSeleccionada .setIngredientes(recetaSrv.ingredientesPorIdReceta(recetaSeleccionada.getId()));
         this.ingredientesDisponibles.setTarget(recetaSeleccionada.getIngredientes());       
+    }
+    
+    public void setRecetaSeleccionadaBusqueda(Receta recetaSeleccionadaBusqueda) {
+        this.recetaSeleccionadaBusqueda = recetaSeleccionadaBusqueda;
+        this.recetaSeleccionadaBusqueda .setIngredientes(recetaSrv.ingredientesPorIdReceta(recetaSeleccionadaBusqueda.getId()));
+        this.ingredientesDisponibles.setTarget(recetaSeleccionadaBusqueda.getIngredientes());       
     }
 
     public List<Receta> getListaRecetas() {
@@ -101,6 +113,14 @@ public class RecetaController implements Serializable {
 
     public void setListaRecetas(List<Receta> listaRecetas) {
         this.listaRecetas = listaRecetas;
+    }
+    
+    public List<Receta> getListaRecetasBusqueda() {
+        return listaRecetasBusqueda;
+    }
+
+    public void setListaRecetasBusqueda(List<Receta> listaRecetasBusqueda) {
+        this.listaRecetasBusqueda = listaRecetasBusqueda;
     }
 
     @PostConstruct
