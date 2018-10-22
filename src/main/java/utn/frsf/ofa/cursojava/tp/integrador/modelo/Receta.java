@@ -40,12 +40,12 @@ public class Receta implements Serializable{
 
     // TODO Completar mapeo de relacion
     @ManyToMany
-    @JoinTable(name="Receta_ingrediente",joinColumns = @JoinColumn(name = "ID_RECETA"),inverseJoinColumns = @JoinColumn(name= "ID_INGREDIENTE"))
+    @JoinTable(name="RecetaIngrediente",joinColumns = @JoinColumn(name = "idReceta"),inverseJoinColumns = @JoinColumn(name= "idIngrediente"))
     private List<Ingrediente> ingredientes;
     
     // TODO Completar mapeo de relacion
     @ManyToOne
-    @JoinColumn(name = "ID_AUTOR")
+    @JoinColumn(name = "idAutor")
     private Autor autor;
     
     public Integer getId() {

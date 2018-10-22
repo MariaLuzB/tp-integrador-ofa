@@ -56,11 +56,11 @@ public class RecetaService {
     public List<Receta> busquedaAvanzada(Autor a, Double precioMin, Double precioMax){        
         //return null;
         List<Receta> recetasBuscadas;
-        recetasBuscadas = em.createQuery("SELECT r FROM Receta r WHERE r.precio >= :PRECIOMIN and r.precio <= :PRECIOMAX"
-                + " and r.autor = :AUTOR")
-            .setParameter("PRECIOMIN", precioMin)
-            .setParameter("PRECIOMAX", precioMax)
-            .setParameter("AUTOR", a)    
+        recetasBuscadas = em.createQuery("SELECT r FROM Receta r WHERE r.precio >= :precioMin and r.precio <= :precioMax"
+                + " and r.autor = :autor")
+            .setParameter("precioMin", precioMin)
+            .setParameter("precioMax", precioMax)
+            .setParameter("autor", a)    
             .getResultList();
         return recetasBuscadas;
     }
