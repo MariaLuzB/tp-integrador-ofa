@@ -41,6 +41,50 @@ public class RecetaController implements Serializable {
 
     private DualListModel<Ingrediente> ingredientesDisponibles;
     
+    private Double busquedaPrecioMin;
+    private Double busquedaPrecioMax;
+    private Autor busquedaAutor;
+    //private Ingrediente busquedaIngrediente;
+
+    public void setBusquedaPrecioMin(Double precio){
+    this.busquedaPrecioMin=precio;
+    }
+    
+    public Double getBusquedaPrecioMin(){
+        return busquedaPrecioMin;
+    }
+    
+    public void setBusquedaPrecioMax(Double precio){
+    this.busquedaPrecioMax=precio;
+    }
+    
+    public Double getBusquedaPrecioMax(){
+    return busquedaPrecioMax;
+    }
+    
+    public void setBusquedaAutor(Autor autor){
+    this.busquedaAutor=autor;
+    }
+    
+    public Autor getBusquedaAutor(){
+    return busquedaAutor;
+    }
+    
+    /*public void setBusquedaIngrediente(Ingrediente ing){
+    this.busquedaIngrediente=ing;
+    }
+    
+    public Ingrediente getBusquedaIngrediente(){
+    return busquedaIngrediente;
+    }*/
+    
+    public void buscar() {        
+        this.listaRecetas=this.recetaSrv.busquedaAvanzada(busquedaAutor, busquedaPrecioMin, busquedaPrecioMax);
+         
+
+    }
+
+    
     public Receta getRecetaSeleccionada() {
         return recetaSeleccionada;
     }

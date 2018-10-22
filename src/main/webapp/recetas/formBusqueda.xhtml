@@ -2,23 +2,45 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <h:form id="frmDatosAutores">
+    <h:form id="frmBusquedaReceta">
         <div class="p-grid">
+            <div class="p-col-4" >
+                <p:outputLabel for="precioMin" value="Precio Mínimo:" />
+            </div>
+            <div class="p-col-6" >
+                <p:inputText id="precioMin" required="true" value="#{recetaController.busquedaPrecioMin}" />
+            </div>   
+            
+            <div class="p-col-4" >
+                <p:outputLabel for="precioMax" value="Precio Máximo:" />
+            </div>
+            <div class="p-col-6" >
+                <p:inputText id="precioMax" required="true" value="#{recetaController.busquedaPrecioMax}" />
+            </div>  
+            
+            <p:dataTable id="tblListaAutores" var="unAutor" value="#{autorController.listaAutores}" selection="#{recetaController.busquedaAutor}" rowKey="#{unAutor.id}">
+            <f:facet name="header">
+                Lista de autores
+            </f:facet>
+            <p:column selectionMode="single" style="width:16px;text-align:center"/>
+            <p:column headerText="Id">
+                <h:outputText value="#{unAutor.id}" />
+            </p:column>
+            <p:column headerText="Nombre">
+                <h:outputText value="#{unAutor.nombre}" />
+            </p:column>
+            <f:facet name="footer">
+                <p:commandButton process="tblListaAutores" icon="ui-icon-search" value="Seleccionar" />
+            </f:facet>
+        </p:dataTable> 
+           
             <div class="p-col-12" >
-                <h2>Informacion de Autor</h2>
-            </div>
-            <div class="p-col-2" >
-                <p:outputLabel for="nombreAutor" value="Nombre Autor:" />
-                <p:inputText id="nombreAutor" required="true" value="#{autorController.autorSeleccionado.nombre}" disabled="#{empty autorController.autorSeleccionado}"/>
-            </div>
-            <div class="p-col-2" >
-                <p:commandButton value="Guardar" action="#{autorController.guardar}" update="frmDatosAutores frmListaAutores" disabled="#{empty autorController.autorSeleccionado}"></p:commandButton>
-            </div>
-            <div class="p-col-3" >
-                <p:commandButton value="Nuevo" action="#{autorController.nuevo()}" update="frmDatosAutores" disabled="#{not empty autorController.autorSeleccionado}"></p:commandButton>
+                <p:commandButton value="Buscar Recetas" action="#{recetaController.buscar}" update="frmRecetas"></p:commandButton>
             </div>                
+
         </div>
     </h:form>
 </ui:composition>

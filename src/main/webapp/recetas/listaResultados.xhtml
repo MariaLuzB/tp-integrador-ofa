@@ -5,21 +5,22 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <h:form id="frmListaAutores">
-        <p:dataTable id="tblListaAutores" var="unAutor" value="#{autorController.listaAutores}" selection="#{autorController.autorSeleccionado}" rowKey="#{unAutor.id}">
+    <h:form id="frmRecetas">
+        <p:dataTable id="tblRecetas" var="unaReceta" value="#{recetaController.listaRecetas}" selection="#{recetaController.recetaSeleccionada}" rowKey="#{unaReceta.id}">
             <f:facet name="header">
-                Lista de autores
+                Lista de Recetas
             </f:facet>
             <p:column selectionMode="single" style="width:16px;text-align:center"/>
             <p:column headerText="Id">
-                <h:outputText value="#{unAutor.id}" />
+                <h:outputText value="#{unaReceta.id}" />
             </p:column>
             <p:column headerText="Nombre">
-                <h:outputText value="#{unAutor.nombre}" />
+                <h:outputText value="#{unaReceta.titulo}" />
             </p:column>
-            <f:facet name="footer">
-                <p:commandButton process="tblListaAutores" update=":frmDatosAutores" icon="ui-icon-search" value="Seleccionar" />
-            </f:facet>
+            <p:column headerText="Precio">
+                <h:outputText value="#{unaReceta.precio}" />
+            </p:column>
+            
         </p:dataTable>
     </h:form>
 
